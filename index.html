@@ -51,6 +51,11 @@
       padding: 0;
     }
 
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
     :root {
       --azul: #1B4F72;
       --azul-claro: #2E86C1;
@@ -985,6 +990,27 @@
       color: rgba(255,255,255,0.5);
     }
 
+    /* Grids que antes eran inline — ahora controlables por media query */
+    .qs-main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .qs-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-nombre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
     /* ========================
        RESPONSIVE — MÓVIL
     ======================== */
@@ -1001,6 +1027,31 @@
         display: none;
       }
 
+      .confianza-inner {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .confianza-item {
+        justify-content: center;
+      }
+
+      /* Quiénes somos: de 2 columnas a 1 */
+      .qs-main-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      /* Formulario nombre+apellidos: de 2 cols a 1 */
+      .form-nombre-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-contacto {
+        padding: 24px 20px;
+      }
+
       .contacto-grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1008,6 +1059,18 @@
 
       .footer-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .footer-legal {
+        flex-wrap: wrap;
+        gap: 12px;
       }
 
       .historia blockquote {
@@ -1018,11 +1081,21 @@
       .historia blockquote::before {
         font-size: 60px;
       }
-    }
 
-    @media (max-width: 480px) {
-      .hero {
-        padding: 64px 20px 60px;
+      .section {
+        padding: 56px 20px;
+      }
+
+      .section-subtitulo {
+        font-size: 16px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recursos-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .hero-btns {
@@ -1030,13 +1103,86 @@
         align-items: center;
       }
 
+      nav {
+        padding: 0 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 56px 16px 48px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero-subtitulo {
+        font-size: 15px;
+      }
+
+      .btn-primario,
+      .btn-secundario,
+      .btn-blanco {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        font-size: 12px;
       }
 
       .cookie-banner {
         flex-direction: column;
         text-align: center;
+      }
+
+      .cookie-banner-btns {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .recursos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Stats de quiénes somos: mantener 2 cols en móvil pequeño */
+      .qs-stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonio-card {
+        padding: 28px 20px;
+      }
+
+      .form-contacto {
+        padding: 20px 16px;
+      }
+
+      .cta-donacion {
+        padding: 56px 16px;
+      }
+
+      .historia {
+        padding: 56px 16px;
+      }
+
+      .historia blockquote {
+        font-size: 18px;
+        padding: 0 10px;
+      }
+
+      .section-titulo {
+        font-size: 24px;
+      }
+
+      .confianza {
+        padding: 32px 16px;
       }
     }
 
@@ -1164,7 +1310,7 @@
       <h2 class="section-titulo">¿Quiénes somos?</h2>
       <p class="section-subtitulo">Una asociación nacida desde dentro, por familias y para familias.</p>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 16px;">
+      <div class="qs-main-grid">
         <div>
           <p style="font-size: 17px; line-height: 1.75; color: var(--texto); margin-bottom: 20px;">
             <strong style="color: var(--azul);">AFECTO</strong> nació de un grupo de padres, madres y cuidadores en Galicia que recibieron el diagnóstico de TEA de un familiar y se encontraron solos, sin saber por dónde empezar.
@@ -1180,7 +1326,7 @@
             <a href="#unete" style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:10px;border:2px solid var(--azul);color:var(--azul);font-weight:700;text-decoration:none;font-size:15px;min-height:44px;">Hazte socio/a</a>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="qs-stats-grid">
           <div style="background: var(--blanco); border-radius: 16px; padding: 28px; text-align: center; box-shadow: var(--sombra);">
             <div style="font-size: 36px; font-weight: 800; color: var(--azul);">+120</div>
             <div style="font-size: 14px; color: var(--texto-suave); margin-top: 4px;">familias acompañadas</div>
@@ -1441,7 +1587,7 @@
         <div class="form-contacto">
           <h3>Envíanos un mensaje</h3>
           <form action="#" method="post" novalidate>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-nombre-grid">
               <div class="form-grupo">
                 <label for="nombre">Nombre *</label>
                 <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" autocomplete="given-name">
